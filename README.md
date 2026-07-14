@@ -54,14 +54,19 @@ After comparing their performance, the **Random Forest Classifier** was selected
 ## Project Structure
 
 ```
-Loan_Approval_Project/
-│── app.py
-│── Loan Approval.ipynb
-│── LoanApprovalModel.pkl
-│── Loan Dataset.csv
-│── requirements.txt
-│── templates/
-│── static/
+Loan_Approval_System
+│
+├── app.py
+├── README.md
+├── requirements.txt
+├── LoanApprovalModel.pkl
+├── templates
+│     └── index.html
+├── static
+│     └── style.css
+├── screenshots
+│     ├── home.png
+│     └── prediction_result.png
 ```
 
 ## Installation
