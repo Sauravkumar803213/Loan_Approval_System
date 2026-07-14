@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Predictor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🏦 Loan Approval Prediction System</h2>
+
+    <form action="/predict" method="POST">
+
+        <label>Education</label>
+        <select name="education">
+            <option value="Graduate"
+                {% if request.form.get('education') == 'Graduate' %}
+                selected
+                {% endif %}>
+                Graduate
+            </option>
+
+            <option value="Not Graduate"
+                {% if request.form.get('education') == 'Not Graduate' %}
+                selected
+                {% endif %}>
+                Not Graduate
+            </option>
+        </select>
+
+        <label>Employment Status</label>
+        <select name="employment_status">
+            <option value="Employed"
+                {% if request.form.get('employment_status') == 'Employed' %}
+                selected
+                {% endif %}>
+                Employed
+            </option>
+
+            <option value="Self Employed"
+                {% if request.form.get('employment_status') == 'Self Employed' %}
+                selected
+                {% endif %}>
+                Self Employed
+            </option>
+        </select>
+
+        <label>Co-Applicant</label>
+        <select name="co_applicant">
+            <option value="Yes"
+                {% if request.form.get('co_applicant') == 'Yes' %}
+                selected
+                {% endif %}>
+                Yes
+            </option>
+
+            <option value="No"
+                {% if request.form.get('co_applicant') == 'No' %}
+                selected
+                {% endif %}>
+                No
+            </option>
+        </select>
+
+        <label>Annual Income</label>
+        <input
+            type="number"
+            name="annual_income"
+            value="{{ request.form.get('annual_income', '') }}"
+            required
+        >
+
+        <label>Monthly Expenses</label>
+        <input
+            type="number"
+            name="monthly_expenses"
+            value="{{ request.form.get('monthly_expenses', '') }}"
+            required
+        >
+
+        <label>Credit Score</label>
+        <input
+            type="number"
+            name="credit_score"
+            value="{{ request.form.get('credit_score', '') }}"
+            required
+        >
+
+        <label>Loan Amount</label>
+        <input
+            type="number"
+            name="loan_amount"
+            value="{{ request.form.get('loan_amount', '') }}"
+            required
+        >
+
+        <label>Loan Term (Months)</label>
+        <input
+            type="number"
+            name="loan_term"
+            value="{{ request.form.get('loan_term', '') }}"
+            required
+        >
+
+        <button type="submit">
+            Predict Loan Approval
+        </button>
+
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        {{ prediction }}
+        {% if warning %}
+     <p style="color:orange; font-weight:bold;">
+        {{ warning|safe }}
+    </p>
+    {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
